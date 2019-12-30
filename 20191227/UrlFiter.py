@@ -41,7 +41,10 @@ for link in soup.find_all('a'):
 # 想法1 根据时间排序得到不同时间段的信息 可以分析长期喜欢看什么内容
 result = result.drop_duplicates('link',keep='first')  # 去重获得重复的值 false是重复的都去掉
 result.sort_values('time',inplace=True)               # keywords使用time或link进行排序
-print(result['link'][0])
+# x轴得到数据集为
+dates = result['time']
+# xs = [datetime.strptime(d,'%Y-%m-%d').date() for d in dates]
+print(dates)
 
 # 得到表格数据开始对数据集进行处理 (注意是否是字符串的问题比较,其实是去重后需要新保存)
 # 想法2 根据相同网站链接数进行排序得信息 可以分析哪个网站访问的实际多 利用词云进行统计
@@ -62,7 +65,7 @@ print(result['link'][0])
 # w = wordcloud.WordCloud(mask=mk)
 # w = wordcloud.WordCloud(width=1920,height=1080,background_color='white',font_path="爱度综艺简体.ttf",mask=mk,scale=15) # 参数配置 长 宽 背景
 # w.generate(seg_str)              # 传入文本
-# w.to_file('output-urlwords.png') # 输出图片拟合
+# w.to_file('cat2.png') # 输出图片拟合
 
 # 想法3 获取得到的图标处理后批量同意生成.PNG的格式
 # result = result.drop_duplicates('icon',keep='first')  # 去重获得重复的值 false是重复的都去掉
