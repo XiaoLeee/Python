@@ -2,9 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5583c0c-1a79-48a0-8dd0-0ef4a8b3239c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UrlFiter.py" beforeDir="false" afterPath="$PROJECT_DIR$/UrlFiter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../20191230/Pid.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/.idea/20191122.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/chemistry.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/customers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/customers_analytics.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/customers_export_1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/music.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/music.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/order_analytics.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191122/orders_export_1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20191230/Gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/../20191230/Gui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -104,6 +116,7 @@
       <workItem from="1577670355979" duration="1859000" />
       <workItem from="1577674450724" duration="1359000" />
       <workItem from="1577693666146" duration="1626000" />
+      <workItem from="1577754622029" duration="557000" />
     </task>
     <servers />
   </component>
