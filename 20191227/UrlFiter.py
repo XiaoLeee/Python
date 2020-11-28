@@ -5,15 +5,12 @@
 #@File  : UrlFiter.py
 
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse
-from matplotlib.dates import AutoDateLocator, AutoDateFormatter, date2num
 import pandas as pd
 import re
 import time
-import datetime
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-import matplotlib.dates as mdate
+from datetime import datetime
+import matplotlib.pyplot  as plt
+import matplotlib.dates as mdates
 import jieba
 import wordcloud
 import imageio
@@ -29,36 +26,34 @@ result['link'] = ''
 result['title'] = ''
 result['time'] = ''
 result['icon'] = ''
-result['number'] = ''
 new = result
-count = 1
+
 # 数据集特征得到href链接 标题 时间戳 icon图标
-# 得到表格数据开始对数据集进行处理 (注意是否是字符串的问题比较,其实是去重后需要新保存)
 soup = BeautifulSoup(htmlhandle,'lxml')
 for link in soup.find_all('a'):
-    new['link'] = urlparse(link.get('href')).hostname   # 获取到的链接信息
-    # new['link'] = link.get('href')
+    new['link'] = link.get('href')   # 获取到的链接信息
     new['title'] = link.string       # 链接内容文本信息即标题
     time_local = time.localtime(int(link['add_date']))      # 获取得到的时间戳注意用小写 str转换为int整型
     new['time'] = time.strftime("%Y-%m-%d %H:%M:%S",time_local)  # 转换为年月日 小时分钟秒
     new['icon'] = link.get('icon')   # 获取得到的ICON图标值 暂时不处理图片
-    new['number'] = count
-    count+=1
-    result = result.append(new,ignore_index=True) #为True增加序列
+    result = result.append(new,ignore_index=True)
 
-# 想法1 根据时间排序得到不同时间段的信息 可以分析长期喜欢看什么内容 不去重
-# newlink = re.match(r'(http|https)://(.+\.)?(\w+(\.)?)+',result['link'][0])
-# newlink = re.match(r'http(s)?://(([\w-]+\.)+\w+(:\d{1,5})?)',result['link'][11]).group(2)
-# result.sort_values('link',inplace=True)               # keywords使用time或link进行排序
-# keyWords = result[result['link'].notnull()]['link']     # 剔除link为空的数据值
+# 想法1 根据时间排序得到不同时间段的信息 可以分析长期喜欢看什么内容
+result = result.drop_duplicates('link',keep='first')  # 去重获得重复的值 false是重复的都去掉
+result.sort_values('time',inplace=True)               # keywords使用time或link进行排序
+# x轴得到数据集为
+dates = result['time']
+# xs = [datetime.strptime(d,'%Y-%m-%d').date() for d in dates]
+print(dates)
 
+# 得到表格数据开始对数据集进行处理 (注意是否是字符串的问题比较,其实是去重后需要新保存)
 # 想法2 根据相同网站链接数进行排序得信息 可以分析哪个网站访问的实际多 利用词云进行统计
 # result = result.drop_duplicates('link',keep='first')  # 去重获得重复的值 false是重复的都去掉
 # result.sort_values('link',inplace=True)               # keywords使用time或link进行排序
 # keyWords = result[result['title'].notnull()]['title'] # 剔除标题title为空的数据值
 
 # 获取Series列的数据行拼接再直接 进行分词拼接为字符串
-# seg_list =''.join(str(row) for index,row in keyWords.items())
+# seg_list ='\n'.join(str(row) for index,row in keyWords.items())
 # seg_list = jieba.cut(seg_list, cut_all=False)
 # seg_str = " ".join(seg_list)
 # 将字符串处理输入到txt文本
@@ -69,8 +64,8 @@ for link in soup.find_all('a'):
 # mk = imageio.imread("cat.png")
 # w = wordcloud.WordCloud(mask=mk)
 # w = wordcloud.WordCloud(width=1920,height=1080,background_color='white',font_path="爱度综艺简体.ttf",mask=mk,scale=15) # 参数配置 长 宽 背景
-# w.generate(seg_str)      # 传入文本
-# w.to_file('cat3.png')    # 输出图片拟合
+# w.generate(seg_str)              # 传入文本
+# w.to_file('cat2.png') # 输出图片拟合
 
 # 想法3 获取得到的图标处理后批量同意生成.PNG的格式
 # result = result.drop_duplicates('icon',keep='first')  # 去重获得重复的值 false是重复的都去掉
